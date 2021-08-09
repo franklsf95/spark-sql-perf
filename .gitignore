@@ -19,3 +19,7 @@ src_managed/
 project/boot/
 project/plugins/project/
 performance/
+
+# Spark
+metastore_db/
+derby.log
