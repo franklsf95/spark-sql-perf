@@ -9,7 +9,7 @@ val sqlContext = new org.apache.spark.sql.SQLContext(sc)
 val rootDir = "/mnt/performance-datasets" // root directory of location to create data in.
  
 val databaseName = "tpcds" // name of database to create.
-val scaleFactor = "1" // scaleFactor defines the size of the dataset to generate (in GB).
+val scaleFactor = "2" // scaleFactor defines the size of the dataset to generate (in GB).
 val format = "parquet" // valid spark format like parquet "parquet".
 // Run:
 val tables = new TPCDSTables(sqlContext,
@@ -30,6 +30,7 @@ tables.genData(
     numPartitions = 20) // how many dsdgen partitions to run - number of input tasks.
  
 // Create the specified database
+sql(s"drop database if exists $databaseName cascade")
 sql(s"create database $databaseName")
 // Create metastore tables in a specified database for your data.
 // Once tables are created, the current database will be switched to the specified database.
